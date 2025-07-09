@@ -1,9 +1,9 @@
 
-SRCS = $ megaphone.cpp
+SRCS = $ phonebook.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-NAME = megaphone
+NAME = phonebook
 
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
