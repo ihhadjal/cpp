@@ -1,23 +1,28 @@
-#ifndef DEF_PERSONNAGE
-#define DEF_PERSONNAGE
-
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include <iostream>
 #include <string>
 
-class Personnage
+class Contact
 {
-    public:
-    void recevoirDegats(int nbDegats);
-    void attaquer(Personnage &cible);
-    void boirePotionDeVie(int quantitePotion);
-    void changerArme(std::string nouvelleArme, int degatsNouvelleArme);
-    bool estVivant();
-    private :
-    int m_vie;
-    int m_mana;
-    std::string m_nomArme;
-    int m_degatArme;
+	public:
+
+	private:
+	std::string m_firstName;
+	std::string m_lastName;
+	std::string m_nickName;
+	std::string m_darkestSecret;
+	int	m_phoneNumber;
 };
+
+class PhoneBook
+{
+	public:
+	void addContact(std::string str);
+	private:
+	Contact m_contacts[8];
+};
+
 
 #endif
