@@ -10,13 +10,27 @@ int main()
 	{
 		std::getline(std::cin, str);
 		if (str == "EXIT")
-			break;
+			break ;
 		else if (str == "ADD")
-			repo.addContact(str, contacts);
+			repo.addFirstName(str);
 	}
 }
 
-void	PhoneBook::addContact(std::string str, Contact con)
+void	PhoneBook::addFirstName(std::string str)
 {
+	Contact test;
+	std::cout << "insert first name: \n";
+	std::getline(std::cin, str);
+	test.setFirstName(str);
+	std::cout << test.getFirstName() <<std::endl;
+}
 
+void	Contact::setFirstName(std::string firstname)
+{
+	this->m_firstName = firstname;
+}
+
+std::string	Contact::getFirstName()
+{
+	return m_firstName;
 }
