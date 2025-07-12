@@ -41,3 +41,12 @@ std::string Contact::getPhone(){
 void Contact::setPhone(std::string phoneNb){
     this->m_phoneNumber = phoneNb;
 }
+
+void    PhoneBook::checkEmpty(std::string str)
+{ 
+    while (str.empty() || str[0] == ' ')
+    {
+        std::cout << "line can not be empty try again: ";
+        std::getline(std::cin, str);
+    }
+}

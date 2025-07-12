@@ -38,6 +38,9 @@ class PhoneBook
     public:
     PhoneBook();
     void addContact(std::string str);
+    void searchContact(std::string str);
+    void checkPhone(std::string str);
+    void checkEmpty(std::string str);
 };
 
 #endif
