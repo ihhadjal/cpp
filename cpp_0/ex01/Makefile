@@ -1,5 +1,5 @@
 
-SRCS = $ phonebook.cpp
+SRCS = $ phonebook.cpp getterSetter.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 

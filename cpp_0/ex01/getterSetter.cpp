@@ -1,0 +1,43 @@
+#include "phonebook.hpp"
+
+
+
+std::string Contact::getFirstName(){
+    return(this->m_firstName);
+}
+
+void Contact::setFirstName(std::string firstName){
+    this->m_firstName = firstName;
+}
+
+std::string Contact::getLastName(){
+    return(this->m_lastName);
+}
+
+void Contact::setLastName(std::string lastName){
+    this->m_lastName = lastName;
+}
+
+std::string Contact::getNickName(){
+    return(this->m_nickName);
+}
+
+void Contact::setNickName(std::string nickName){
+    this->m_nickName = nickName;
+}
+
+std::string Contact::getDarkest(){
+    return(this->m_darkestSecret);
+}
+
+void Contact::setDarkest(std::string darkestSecret){
+    this->m_darkestSecret = darkestSecret;
+}
+
+std::string Contact::getPhone(){
+    return(this->m_phoneNumber);
+}
+
+void Contact::setPhone(std::string phoneNb){
+    this->m_phoneNumber = phoneNb;
+}
