@@ -50,3 +50,26 @@ void    PhoneBook::checkEmpty(std::string str)
         std::getline(std::cin, str);
     }
 }
+
+void PhoneBook::checkPhone(std::string str)
+{
+    for (int i = 0; str[i]; i++)
+    {
+        while (!isdigit(str[i]))
+        {
+            std::cout << "only numbers are accepted try again: ";
+            std::getline(std::cin, str);
+        }
+    }
+}
+void PhoneBook::checkLetters(std::string str)
+{
+    for (int i = 0; str[i]; i++)
+    {
+        while (isdigit(str[i]))
+        {
+            std::cout << "only letters are accepted try again: ";
+            std::getline(std::cin, str);
+        }
+    }
+}

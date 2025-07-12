@@ -41,6 +41,8 @@ class PhoneBook
     void searchContact(std::string str);
     void checkPhone(std::string str);
     void checkEmpty(std::string str);
+	void printTable(int i);
+	void checkLetters(std::string str);
 };
 
 #endif
