@@ -53,9 +53,17 @@ void    PhoneBook::addContact(std::string str)
 
 void	PhoneBook::searchContact(std::string str)
 {
-	(void)str;
 	for (int i = 0; i != m_index; i++)
 		printTable(i);
+	std::cout << "wich contact would you like to see: ";
+	std::getline(std::cin, str);
+	int astr = atoi(str.c_str());
+	std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
+	std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
+	std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
+	std::cout << "PhoneNumber: " << this->m_contacts[astr].getPhone() << std::endl;
+	std::cout << "DarkestSecret: " << this->m_contacts[astr].getDarkest() << std::endl;
+
 }
 
 void	PhoneBook::printTable(int i)
@@ -67,5 +75,4 @@ void	PhoneBook::printTable(int i)
 	std::cout << this->m_contacts[i].getLastName();
 	std::cout << "   |   ";
 	std::cout << this->m_contacts[i].getNickName() << std::endl;
-
 }
