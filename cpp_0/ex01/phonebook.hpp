@@ -17,7 +17,6 @@ class Contact
 
 
     public:
-    void print();
     std::string getFirstName();
     void setFirstName(std::string firstName);
     std::string getLastName();
