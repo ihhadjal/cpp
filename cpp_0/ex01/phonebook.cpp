@@ -3,7 +3,6 @@
 int main(void)
 {
     PhoneBook repo;
-    Contact   contacts;
     std::string str;
 
     while (1)
@@ -55,24 +54,40 @@ void	PhoneBook::searchContact(std::string str)
 {
 	for (int i = 0; i != m_index; i++)
 		printTable(i);
-	std::cout << "wich contact would you like to see: ";
-	std::getline(std::cin, str);
-	int astr = atoi(str.c_str());
-	std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
-	std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
-	std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
-	std::cout << "PhoneNumber: " << this->m_contacts[astr].getPhone() << std::endl;
-	std::cout << "DarkestSecret: " << this->m_contacts[astr].getDarkest() << std::endl;
+    if (!this->m_contacts->getFirstName().empty() && !this->m_contacts->getLastName().empty() 
+        && !this->m_contacts->getNickName().empty() && !this->m_contacts->getPhone().empty() 
+        && !this->m_contacts->getDarkest().empty())
+    {
+        std::cout << "wich contact would you like to see: ";
+        std::getline(std::cin, str);
+        int astr = atoi(str.c_str());
+        std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
+        std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
+        std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
+        std::cout << "PhoneNumber: " << this->m_contacts[astr].getPhone() << std::endl;
+        std::cout << "DarkestSecret: " << this->m_contacts[astr].getDarkest() << std::endl;
+    }
+    else
+        std::cout << "the repo is empty please add a contact\n";
 
 }
 
-void	PhoneBook::printTable(int i)
+
+void    PhoneBook::printTable(int i)
 {
-	std::cout << i;
-	std::cout << "   |   ";
-	std::cout << this->m_contacts[i].getFirstName();
-	std::cout << "   |   ";
-	std::cout << this->m_contacts[i].getLastName();
-	std::cout << "   |   ";
-	std::cout << this->m_contacts[i].getNickName() << std::endl;
+    std::string firstname = this->m_contacts[i].getFirstName();
+    std::string lastname = this->m_contacts[i].getLastName();
+    std::string nickname = this->m_contacts[i].getNickName();
+
+    if (firstname.length() > 10)
+        firstname = firstname.substr(0, 9) + ".";
+    if (lastname.length() > 10)
+        lastname = lastname.substr(0, 9) + ".";
+    if (nickname.length() > 10)
+        nickname = nickname.substr(0, 9) + ".";
+    
+    std::cout << std::setw(10) << i << '|';
+    std::cout << std::setw(10) << firstname << '|';
+    std::cout << std::setw(10) << lastname << '|';
+    std::cout << std::setw(10) << nickname << std::endl;
 }
