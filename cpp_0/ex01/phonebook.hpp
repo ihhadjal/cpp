@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <cstdlib>
 #include <iomanip>
 
@@ -40,10 +41,10 @@ class PhoneBook
     PhoneBook();
     void addContact(std::string str);
     void searchContact(std::string str);
-    void checkPhone(std::string str);
-    void checkEmpty(std::string str);
+    int checkPhone(std::string str);
+    int checkEmpty(std::string str);
 	void printTable(int i);
-	void checkLetters(std::string str);
+	int checkLetters(std::string str);
 };
 
 #endif

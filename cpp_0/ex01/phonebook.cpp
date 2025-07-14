@@ -17,36 +17,78 @@ int main(void)
             repo.searchContact(str);
     }
 }
+
 PhoneBook::PhoneBook(): m_index(0)
 {
 }
+
 void    PhoneBook::addContact(std::string str)
 {
     std::cout << "enter a first name: ";
     std::getline(std::cin, str);
-    checkEmpty(str);
-	checkLetters(str);
-    this->m_contacts[m_index].setFirstName(str);
+    while (checkEmpty(str) == 0)
+        std::getline(std::cin, str);
+    while (checkLetters(str) == 0)
+    {
+        std::getline(std::cin, str);
+        while (checkEmpty(str) == 0)
+            std::getline(std::cin, str);
+        this->m_contacts[m_index].setFirstName(str);
+    }
+    if (checkLetters(str) == 1)
+        this->m_contacts[m_index].setFirstName(str);
     std::cout << "enter a last name: ";
     std::getline(std::cin, str);
-    checkEmpty(str);
-	checkLetters(str);
-    this->m_contacts[m_index].setLastName(str);
+    while (checkEmpty(str) == 0)
+        std::getline(std::cin, str);
+    while (checkLetters(str) == 0)
+    {
+        std::getline(std::cin, str);
+        while (checkEmpty(str) == 0)
+            std::getline(std::cin, str);
+        this->m_contacts[m_index].setLastName(str);
+    }
+    if (checkLetters(str) == 1)
+        this->m_contacts[m_index].setLastName(str);
     std::cout << "enter a nick name: ";
     std::getline(std::cin, str);
-    checkEmpty(str);
-	checkLetters(str);
-    this->m_contacts[m_index].setNickName(str);
+    while (checkEmpty(str) == 0)
+        std::getline(std::cin, str);
+    while (checkLetters(str) == 0)
+    {
+        std::getline(std::cin, str);
+        while (checkEmpty(str) == 0)
+            std::getline(std::cin, str);
+        this->m_contacts[m_index].setNickName(str);
+    }
+    if (checkLetters(str) == 1)
+        this->m_contacts[m_index].setNickName(str);
     std::cout << "enter a phone number: ";
     std::getline(std::cin, str);
-    checkEmpty(str);
-    checkPhone(str);
-    this->m_contacts[m_index].setPhone(str);
-    std::cout << "enter your deepest secret: ";
+    while (checkEmpty(str) == 0)
+        std::getline(std::cin, str);
+    while (checkPhone(str) == 0)
+    {
+        std::getline(std::cin, str);
+        while (checkEmpty(str) == 0)
+            std::getline(std::cin, str);
+        this->m_contacts[m_index].setPhone(str);
+    }
+    if (checkPhone(str) == 1)
+        this->m_contacts[m_index].setPhone(str);
+    std::cout << "enter your darkest secret: ";
     std::getline(std::cin, str);
-    checkEmpty(str);
-	checkLetters(str);
-    this->m_contacts[m_index].setDarkest(str);
+    while (checkEmpty(str) == 0)
+        std::getline(std::cin, str);
+    while (checkLetters(str) == 0)
+    {
+        std::getline(std::cin, str);
+        while (checkEmpty(str) == 0)
+            std::getline(std::cin, str);
+        this->m_contacts[m_index].setDarkest(str);
+    }
+    if (checkLetters(str) == 1)
+        this->m_contacts[m_index].setDarkest(str);
     this->m_index = (this->m_index + 1) % 8;
 }
 
@@ -58,17 +100,17 @@ void	PhoneBook::searchContact(std::string str)
         && !this->m_contacts->getNickName().empty() && !this->m_contacts->getPhone().empty() 
         && !this->m_contacts->getDarkest().empty())
     {
-        std::cout << "wich contact would you like to see: ";
-        std::getline(std::cin, str);
-        int astr = atoi(str.c_str());
-        std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
-        std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
-        std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
-        std::cout << "PhoneNumber: " << this->m_contacts[astr].getPhone() << std::endl;
-        std::cout << "DarkestSecret: " << this->m_contacts[astr].getDarkest() << std::endl;
+            std::cout << "wich contact would you like to see: ";
+            std::getline(std::cin, str);
+            int astr = atoi(str.c_str());
+            std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
+            std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
+            std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
+            std::cout << "phone number: " << this->m_contacts[astr].getPhone() << std::endl;
+            std::cout << "darkest secret: " << this->m_contacts[astr].getDarkest() << std::endl;
     }
     else
-        std::cout << "the repo is empty please add a contact\n";
+        std::cout << "the repo is empty please add a contact or insert a contact information\n";
 
 }
 

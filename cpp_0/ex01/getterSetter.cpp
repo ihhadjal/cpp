@@ -42,34 +42,38 @@ void Contact::setPhone(std::string phoneNb){
     this->m_phoneNumber = phoneNb;
 }
 
-void    PhoneBook::checkEmpty(std::string str)
+int    PhoneBook::checkEmpty(std::string str)
 { 
     while (str.empty() || str[0] == ' ')
     {
         std::cout << "line can not be empty try again: ";
-        std::getline(std::cin, str);
+        return (0);
     }
+    return (1);
 }
 
-void PhoneBook::checkPhone(std::string str)
+int PhoneBook::checkPhone(std::string str)
 {
     for (int i = 0; str[i]; i++)
     {
         while (!isdigit(str[i]))
         {
             std::cout << "only numbers are accepted try again: ";
-            std::getline(std::cin, str);
+            return (0);
         }
     }
+    return (1);
 }
-void PhoneBook::checkLetters(std::string str)
+
+int PhoneBook::checkLetters(std::string str)
 {
     for (int i = 0; str[i]; i++)
     {
         while (isdigit(str[i]))
         {
             std::cout << "only letters are accepted try again: ";
-            std::getline(std::cin, str);
+            return (0);
         }
     }
+    return (1);
 }
