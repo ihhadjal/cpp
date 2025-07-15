@@ -103,11 +103,16 @@ void	PhoneBook::searchContact(std::string str)
             std::cout << "wich contact would you like to see: ";
             std::getline(std::cin, str);
             int astr = atoi(str.c_str());
-            std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
-            std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
-            std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
-            std::cout << "phone number: " << this->m_contacts[astr].getPhone() << std::endl;
-            std::cout << "darkest secret: " << this->m_contacts[astr].getDarkest() << std::endl;
+            if (astr < this->m_index && astr >= 0)
+            {
+                std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
+                std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
+                std::cout << "nick name: " << this->m_contacts[astr].getNickName() << std::endl;
+                std::cout << "phone number: " << this->m_contacts[astr].getPhone() << std::endl;
+                std::cout << "darkest secret: " << this->m_contacts[astr].getDarkest() << std::endl;
+            }
+            else
+                std::cout << "the contact does not exist\n";
     }
     else
         std::cout << "the repo is empty please add a contact or insert a contact information\n";
