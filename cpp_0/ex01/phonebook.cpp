@@ -24,6 +24,7 @@ PhoneBook::PhoneBook(): m_index(0)
 
 void    PhoneBook::addContact(std::string str)
 {
+    int index = this->m_index % 8;
     std::cout << "enter a first name: ";
     std::getline(std::cin, str);
     while (checkEmpty(str) == 0)
@@ -33,10 +34,10 @@ void    PhoneBook::addContact(std::string str)
         std::getline(std::cin, str);
         while (checkEmpty(str) == 0)
             std::getline(std::cin, str);
-        this->m_contacts[m_index].setFirstName(str);
+        this->m_contacts[index].setFirstName(str);
     }
     if (checkLetters(str) == 1)
-        this->m_contacts[m_index].setFirstName(str);
+        this->m_contacts[index].setFirstName(str);
     std::cout << "enter a last name: ";
     std::getline(std::cin, str);
     while (checkEmpty(str) == 0)
@@ -46,10 +47,10 @@ void    PhoneBook::addContact(std::string str)
         std::getline(std::cin, str);
         while (checkEmpty(str) == 0)
             std::getline(std::cin, str);
-        this->m_contacts[m_index].setLastName(str);
+        this->m_contacts[index].setLastName(str);
     }
     if (checkLetters(str) == 1)
-        this->m_contacts[m_index].setLastName(str);
+        this->m_contacts[index].setLastName(str);
     std::cout << "enter a nick name: ";
     std::getline(std::cin, str);
     while (checkEmpty(str) == 0)
@@ -59,10 +60,10 @@ void    PhoneBook::addContact(std::string str)
         std::getline(std::cin, str);
         while (checkEmpty(str) == 0)
             std::getline(std::cin, str);
-        this->m_contacts[m_index].setNickName(str);
+        this->m_contacts[index].setNickName(str);
     }
     if (checkLetters(str) == 1)
-        this->m_contacts[m_index].setNickName(str);
+        this->m_contacts[index].setNickName(str);
     std::cout << "enter a phone number: ";
     std::getline(std::cin, str);
     while (checkEmpty(str) == 0)
@@ -72,10 +73,10 @@ void    PhoneBook::addContact(std::string str)
         std::getline(std::cin, str);
         while (checkEmpty(str) == 0)
             std::getline(std::cin, str);
-        this->m_contacts[m_index].setPhone(str);
+        this->m_contacts[index].setPhone(str);
     }
     if (checkPhone(str) == 1)
-        this->m_contacts[m_index].setPhone(str);
+        this->m_contacts[index].setPhone(str);
     std::cout << "enter your darkest secret: ";
     std::getline(std::cin, str);
     while (checkEmpty(str) == 0)
@@ -85,16 +86,21 @@ void    PhoneBook::addContact(std::string str)
         std::getline(std::cin, str);
         while (checkEmpty(str) == 0)
             std::getline(std::cin, str);
-        this->m_contacts[m_index].setDarkest(str);
+        this->m_contacts[index].setDarkest(str);
     }
     if (checkLetters(str) == 1)
-        this->m_contacts[m_index].setDarkest(str);
-    this->m_index = (this->m_index + 1) % 8;
+        this->m_contacts[index].setDarkest(str);
+    this->m_index = this->m_index + 1;
 }
 
 void	PhoneBook::searchContact(std::string str)
 {
-	for (int i = 0; i != m_index; i++)
+    int max_coontacts;
+    if (m_index > 8)
+        max_coontacts = 8;
+    else
+        max_coontacts = m_index;
+    for (int i = 0; i < max_coontacts; i++)
 		printTable(i);
     if (!this->m_contacts->getFirstName().empty() && !this->m_contacts->getLastName().empty() 
         && !this->m_contacts->getNickName().empty() && !this->m_contacts->getPhone().empty() 
@@ -103,7 +109,7 @@ void	PhoneBook::searchContact(std::string str)
             std::cout << "wich contact would you like to see: ";
             std::getline(std::cin, str);
             int astr = atoi(str.c_str());
-            if (astr < this->m_index && astr >= 0)
+            if (astr < max_coontacts && astr >= 0)
             {
                 std::cout << "first name: " << this->m_contacts[astr].getFirstName() << std::endl;
                 std::cout << "last name: " << this->m_contacts[astr].getLastName() << std::endl;
