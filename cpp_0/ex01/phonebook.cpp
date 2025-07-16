@@ -138,7 +138,6 @@ void    PhoneBook::printTable(int i)
         lastname = lastname.substr(0, 9) + ".";
     if (nickname.length() > 10)
         nickname = nickname.substr(0, 9) + ".";
-    
     std::cout << std::setw(10) << i << '|';
     std::cout << std::setw(10) << firstname << '|';
     std::cout << std::setw(10) << lastname << '|';
