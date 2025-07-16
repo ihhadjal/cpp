@@ -5,7 +5,7 @@ OBJS = ${SRCS:.cpp=.o}
 
 NAME = phonebook
 
-CXX = g++
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
