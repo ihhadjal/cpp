@@ -1,21 +1,12 @@
 #ifndef HUMANB_HPP
-#define HUMANA_HPP
+#define HUMANB_HPP
 
 #include <iostream>
 #include <string>
 #include <cstring>
 #include <cstdlib>
 #include <iomanip>
+#include "Weapon.hpp"
 
 
-class HumanA
-{
-    private:
-    std::string m_Weapon;
-    std::string m_Name;
-
-    public:
-    void attack();
-
-};
 #endif

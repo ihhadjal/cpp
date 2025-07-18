@@ -7,12 +7,5 @@
 #include <cstdlib>
 #include <iomanip>
 
-class Weapon{
-    private:
-    std::string m_type;
 
-    public:
-    std::string getType();
-    void        setType(std::string type);
-};
 #endif
