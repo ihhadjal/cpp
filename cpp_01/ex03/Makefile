@@ -2,7 +2,7 @@ SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-NAME = brain
+NAME = weapons
 
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
