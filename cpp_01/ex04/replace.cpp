@@ -41,15 +41,13 @@ void Swap::replace(char *filename)
 	while (getline(fd, newStr))
 	{
         pos = newStr.find(s1);
-        while (pos != std::string::npos){
-            size_t i = 0;
-            size_t j = pos;
-            while (i < s2.size() && s2[i] && newStr[j]){
-                newStr[j++] = s2[i++];
-            }
-            pos = newStr.find(s1, pos + s1.size());
+        while (pos != std::string::npos)
+        {
+            newStr.erase(pos, s1.size());
+            newStr.insert(pos, s2);
+            pos = newStr.find(s1, pos + s2.size());
         }
 	}
-    std::cout << newStr << std::endl;
     fd.close();
 }
+
