@@ -30,17 +30,22 @@ void Swap::replace(char *filename)
 	std::string s2 = this->getReplace();
 	std::string newStr;
 	std::fstream fd;
+    std::ofstream newFile;
 	size_t pos;
-
+    
 	fd.open(filename, std::fstream::in | std::fstream::out);
 	if (!fd)
 	{
-		std::cout << "error: can not open file\n";
+        std::cout << "error: can not open file\n";
 		exit(1);
 	}
 	while (getline(fd, newStr))
 	{
         pos = newStr.find(s1);
+        if (pos == std::string::npos){
+            std::cout << "error: could not find the word\n";
+            exit (1);
+        }
         while (pos != std::string::npos)
         {
             newStr.erase(pos, s1.size());
@@ -48,6 +53,10 @@ void Swap::replace(char *filename)
             pos = newStr.find(s1, pos + s2.size());
         }
 	}
+    std::string newFileName = std::string(filename) + ".replace";
+    newFile.open(newFileName.c_str());
+    newFile << newStr;
     fd.close();
+    newFile.close();
 }
 
