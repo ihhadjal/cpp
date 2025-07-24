@@ -5,7 +5,7 @@ OBJS = ${SRCS:.cpp=.o}
 NAME = replace
 
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM = rm -rf
 
