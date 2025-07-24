@@ -29,9 +29,11 @@ void Swap::replace(char *filename)
 	std::string s1 = this->getFind();
 	std::string s2 = this->getReplace();
 	std::string newStr;
+    std::string line;
 	std::fstream fd;
     std::ofstream newFile;
 	size_t pos;
+    bool    found = false;
     
 	fd.open(filename, std::fstream::in | std::fstream::out);
 	if (!fd)
@@ -39,24 +41,29 @@ void Swap::replace(char *filename)
         std::cout << "error: can not open file\n";
 		exit(1);
 	}
-	while (getline(fd, newStr))
+	while (getline(fd, line))
 	{
-        pos = newStr.find(s1);
-        if (pos == std::string::npos){
-            std::cout << "error: could not find the word\n";
-            exit (1);
-        }
+        pos = line.find(s1);
         while (pos != std::string::npos)
         {
-            newStr.erase(pos, s1.size());
-            newStr.insert(pos, s2);
-            pos = newStr.find(s1, pos + s2.size());
+            line.erase(pos, s1.size());
+            line.insert(pos, s2);
+            pos = line.find(s1, pos + s2.size());
+            found = true;
         }
-	}
-    std::string newFileName = std::string(filename) + ".replace";
-    newFile.open(newFileName.c_str());
-    newFile << newStr;
+        newStr += line;
+        newStr += '\n';
+    }
+    if (found == false){
+        std::cout << "word not found\n";
+        exit (1);
+    }
+    else
+    {
+        std::string newFileName = std::string(filename) + ".replace";
+        newFile.open(newFileName.c_str());
+        newFile << newStr;
+        newFile.close();
+    }
     fd.close();
-    newFile.close();
 }
-
