@@ -1,8 +1,8 @@
-SRCS = canonic.cpp
+SRCS = main.cpp Fixed.cpp
 
-OBJS = ${SRCS:.cpp=.o} 
+OBJS = ${SRCS:.cpp=.o}
 
-NAME = tuto
+NAME = fixed
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
