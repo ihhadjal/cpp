@@ -53,4 +53,3 @@ void    ClapTrap::beRepaired(unsigned int amount){
     this->_hitPoints += amount;
     std::cout << "ClapTrap " << this->getName() << " repaired " << amount << " hit points\n";
 }
-    ScavTrap wof;
