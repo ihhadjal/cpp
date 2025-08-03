@@ -6,5 +6,7 @@ int main()
 {
     ClapTrap iheb("iheb");
     ClapTrap dren("dren");
-    FragTrap mew;
+    FragTrap mew("mew");
+
+    mew.highFiveGuys();
 }
