@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h> 
-
+#include "brain.hpp"
 
 class Animal
 {   
@@ -22,6 +22,9 @@ class Animal
 
 class Dog : public Animal
 {
+    private:
+    Brain *_brain;
+
     public:
     Dog();
     Dog(const Dog &src);
@@ -32,6 +35,9 @@ class Dog : public Animal
 
 class Cat : public Animal
 {
+    private:
+    Brain *_brain;
+
     public:
     Cat();
     Cat(const Cat &src);
