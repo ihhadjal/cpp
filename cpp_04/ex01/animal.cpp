@@ -11,7 +11,7 @@ Animal::Animal(const Animal &src){
 }
 
 Animal::Animal(std::string type) : _type(type){
-    std::cout << "Animal default constructor called\n";
+    std::cout << "Animal type constructor called\n";
 }
 
 Animal &Animal::operator=(const Animal &rhs){
@@ -29,5 +29,5 @@ std::string Animal::getType() const{
 }
 
 void Animal::makeSound()const{
-    std::cout << this->getType() << "makes a generic animal sound\n";
+    std::cout << this->getType() << " makes a generic animal sound\n";
 }
