@@ -40,4 +40,27 @@ class Cat : public Animal
     virtual void makeSound()const;
 };
 
+class WrongAnimal
+{
+    protected:
+    std::string _type;
+
+    public:
+    WrongAnimal();
+    WrongAnimal(const WrongAnimal &src);
+    WrongAnimal &operator=(const WrongAnimal &rhs);
+    ~WrongAnimal();
+    void    makeSound()const;
+    std::string getType()const;
+};
+
+class WrongCat : public WrongAnimal
+{
+    public:
+    WrongCat();
+    WrongCat(const WrongCat &src);
+    WrongCat &operator=(const WrongCat &rhs);
+    ~WrongCat();
+    void    makeSound()const;
+};
 #endif
