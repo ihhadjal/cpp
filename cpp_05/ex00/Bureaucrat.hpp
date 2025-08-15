@@ -14,7 +14,7 @@ class Bureaucrat
     Bureaucrat();
     Bureaucrat(const Bureaucrat &src);
     Bureaucrat(const std::string name, int grade);
-    virtual ~Bureaucrat() throw();
+    ~Bureaucrat() throw();
     Bureaucrat &operator=(const Bureaucrat &rhs);
     
     std::string getName()const;
