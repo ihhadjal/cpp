@@ -1,5 +1,5 @@
 #include "Form.hpp"
-
+#include "Bureaucrat.hpp"
 Form::Form() : _isSigned(false), _gradeRequiredSign(0), _gradeRequiredExec(0){
     std::cout << "Form default constructor called\n";
 }
@@ -68,9 +68,10 @@ std::ostream &operator<<(std::ostream &o, const Form &i)
     return o;
 }
 
-void    Form::beSigned(Bureaucrat employee)
+void    Form::beSigned(Bureaucrat &employee)
 {
-    Form::GradeTooLowException exception("error: the Bureaucrat grade is too  low\n");
+    Form::GradeTooLowException exception("the Bureaucrat grade is too low\n");
+    Form::GradeTooLowException exception1("the Bureaucrat grade is too high\n");
     try 
     {
         if (employee.getGrade() > this->getGradeExec() && employee.getGrade() > this->getGradeSign())
@@ -78,8 +79,10 @@ void    Form::beSigned(Bureaucrat employee)
     }
     catch(const std::exception &e)
     {
-        std::cout << e.what();
+        std::cout << employee.getName() << " couldn't sign " << this->getName() 
+            << " because " << e.what();
         exit (1);
     }
     this->_isSigned = true;
+    std::cout << employee.getName() << " signed " << this->getName() << '\n';
 }
