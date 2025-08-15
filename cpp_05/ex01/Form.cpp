@@ -71,7 +71,6 @@ std::ostream &operator<<(std::ostream &o, const Form &i)
 void    Form::beSigned(Bureaucrat &employee)
 {
     Form::GradeTooLowException exception("the Bureaucrat grade is too low\n");
-    Form::GradeTooLowException exception1("the Bureaucrat grade is too high\n");
     try 
     {
         if (employee.getGrade() > this->getGradeExec() && employee.getGrade() > this->getGradeSign())
