@@ -1,7 +1,11 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include "Bureaucrat.hpp"
+#include <iostream>
+#include <exception>
+#include <stdlib.h>
+
+class Bureaucrat;
 
 class Form
 {
@@ -41,7 +45,7 @@ class Form
         GradeTooHighException(const char *msg);
         const char *what() const throw();
     };
-    void beSigned(Bureaucrat employee);
+    void beSigned(Bureaucrat &employee);
 
 };
 

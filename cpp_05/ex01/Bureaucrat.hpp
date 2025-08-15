@@ -4,6 +4,9 @@
 #include <iostream>
 #include <exception>
 #include <stdlib.h>
+
+class Form;
+
 class Bureaucrat
 {
     private:
@@ -41,6 +44,7 @@ class Bureaucrat
         GradeTooHighException(const char *msg);
         const char *what() const throw();
     };
+    void signForm(Form &form);
 };
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &i);
