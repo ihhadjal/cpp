@@ -3,10 +3,10 @@
 
 int main()
 {
-    Form iheb(160, 10);
+    Form iheb("iheb", 10, 10);
     Form::GradeTooHighException iheb2("Error: the grade is too high\n");
     Form::GradeTooLowException iheb3("Error: the grade is too low\n");
-
+    Bureaucrat marc("marc", 9);
     try
     {
         if (iheb.getGradeExec() < 1 || iheb.getGradeSign() < 1)
@@ -20,4 +20,8 @@ int main()
         exit (1);
     }
     
+    std::cout << iheb;
+    std::cout << "marc signs the form...\n";
+    iheb.beSigned(marc);
+    std::cout << iheb;
 }
