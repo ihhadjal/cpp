@@ -3,7 +3,7 @@
 
 int main()
 {
-    Bureaucrat iheb("iheb", 160);
+    Bureaucrat iheb("iheb", 100);
     Bureaucrat::GradeTooLowException iheb2("Error: the grade is too low\n");
     Bureaucrat::GradeTooHighException iheb3("Error: the grade is too high\n");
     try
@@ -16,7 +16,7 @@ int main()
     catch (const std::exception  &e)
     {
         std::cout << e.what();
+        exit (1);
     }
-
     std::cout << iheb;
 }
