@@ -73,7 +73,7 @@ void    Form::beSigned(Bureaucrat &employee)
     Form::GradeTooLowException exception("the Bureaucrat grade is too low\n");
     try 
     {
-        if (employee.getGrade() > this->getGradeExec() && employee.getGrade() > this->getGradeSign())
+        if (employee.getGrade() > this->getGradeExec() || employee.getGrade() > this->getGradeSign())
             throw exception;
     }
     catch(const std::exception &e)
