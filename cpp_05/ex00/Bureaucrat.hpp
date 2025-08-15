@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <exception>
-
+#include <stdlib.h>
 class Bureaucrat
 {
     private:

@@ -33,10 +33,21 @@ int Bureaucrat::getGrade()const{
 
 void    Bureaucrat::incrementGrade(int points){
     _grade -= points;
+    if (_grade < 1)
+    {
+        std::cout << "Error: the grade is too high\n";
+        exit (1);
+    }
 }
 
 void    Bureaucrat::decrementGrade(int points){
     _grade += points;
+
+    if (_grade > 150)
+    {
+        std::cout << "Error: the grade is too low\n";
+        exit (1);
+    }
 }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(const char *msg) : _msg(msg)
