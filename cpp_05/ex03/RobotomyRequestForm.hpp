@@ -7,7 +7,7 @@
 
 class RobotomyRequestForm : public AForm
 {
-  private:
+  protected:
 	std::string _target;
 
   public:

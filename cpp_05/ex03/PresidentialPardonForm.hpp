@@ -5,7 +5,7 @@
 
 class PresidentialPardonForm : public AForm
 {
-  private:
+  protected:
 	std::string _target;
 
   public:

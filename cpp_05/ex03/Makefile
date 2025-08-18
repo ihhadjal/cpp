@@ -1,8 +1,8 @@
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShruberryCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShruberryCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-NAME = Form
+NAME = intern
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
