@@ -20,4 +20,5 @@ class ScalarConvert
 };
 
 bool    check_if_num(std::string str);
+bool    check_if_float(std::string str);
 #endif
