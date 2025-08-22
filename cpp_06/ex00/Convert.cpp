@@ -6,11 +6,7 @@ void ScalarConvert::convert(std::string toConvert)
     char *endp;
     float conv = std::strtof(toConvert.c_str(), &endp);
 
-    if (conv > FLT_MAX || conv < FLT_MIN)
-    {
-        std::cout << "conversion impossible, int overflow\n";
-        exit (1);
-    }
+    check_characters(toConvert);
     if ((toConvert[0] >= 33 && toConvert[0] <= 126) && toConvert.size() == 1 
         && check_if_num(toConvert) == false)
     {
@@ -21,6 +17,11 @@ void ScalarConvert::convert(std::string toConvert)
     }
     if (check_if_num(toConvert) == true)
     {
+        if (conv > FLT_MAX || conv < FLT_MIN)
+        {
+            std::cout << "error: int overflow\n";
+            exit (1);
+        }
         if (Ivalue >= 33 && Ivalue <= 126)
             std::cout << "char: " << static_cast<char>(Ivalue) << '\n';
         else
@@ -53,6 +54,11 @@ void ScalarConvert::convert(std::string toConvert)
         std::cout << "float: " << toConvert << "f" << '\n';
         std::cout << "double: " << toConvert << '\n';
     }
+    check_special_cases(toConvert);
+}
+
+void    check_special_cases(std::string toConvert)
+{
     if (toConvert == "nan" || toConvert == "nanf")
     {
         std::cout << "char: impossible\n";
@@ -78,7 +84,6 @@ void ScalarConvert::convert(std::string toConvert)
             std::cout << "double: +inf\n";
         }
     }
-
 }
 
 bool    check_if_double(std::string str)
@@ -125,6 +130,22 @@ bool    check_if_float(std::string str)
 }
 
 
+void    check_characters(std::string str)
+{
+    bool flag = 0;
+
+    for(int i = 0; str[i]; i++)
+    {
+        if (isdigit(str[i]))
+            flag = 1;
+        if ((flag == 1 && (str[i] >= 33 && str[i] <= 46)) || (flag == 1 && (str[i] >= 58 && str[i] <= 126)))
+        {
+            std::cout << "error: int does not support characters\n";
+            exit (1);
+        }
+    }
+}
+
 bool    check_if_num(std::string str)
 {
     size_t c = 0;
@@ -132,6 +153,11 @@ bool    check_if_num(std::string str)
     {
         if (isdigit(str[i]) || str[i] == '-' || str[i] == '+')
             c++;
+        if (str[i] == ' ' || str[i] == '\t')
+        {
+            std::cout << "error: spaces are not allowed\n";
+            exit (1);
+        }
     }
     if (c == strlen(str.c_str()))
         return true;
