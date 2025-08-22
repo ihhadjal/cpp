@@ -20,9 +20,12 @@ void ScalarConvert::convert(std::string toConvert)
             std::cout << "char: " << static_cast<char>(Ivalue) << '\n';
         else
             std::cout << "char: not displayable\n";
-        std::cout << "int: " << Ivalue << '\n';
+        if (Ivalue > INT_MAX || Ivalue < INT_MIN)
+            std::cout << "int: int overflow\n";
+        else
+            std::cout << "int: " << Ivalue << '\n';
         std::cout << "float: " << static_cast<float>(Ivalue) << ".0f" << '\n';
-        std::cout << "double: " << static_cast<double>(Ivalue) << '\n';
+        std::cout << "double: " << static_cast<double>(Ivalue) << ".0" <<'\n';
     }
     if (check_if_float(toConvert) == true)
     {
@@ -32,8 +35,49 @@ void ScalarConvert::convert(std::string toConvert)
             std::cout << "char: not displayable\n";
         std::cout << "int: " << static_cast<int>(conv) << '\n';
         std::cout << "float: " << toConvert << '\n';
-        std::cout << "double: " << conv << '\n';
+        if (check_special_double(toConvert) == false)
+            std::cout << "double: " << conv << '\n';
+        else
+            std::cout << "double: " << conv << ".0" << '\n';
+
     }
+    if (check_if_double(toConvert) == true)
+    {
+        if (conv >= 33 && conv <= 126)
+            std::cout << "char: " << static_cast<char>(conv) << '\n';
+        else
+            std::cout << "char: not displayable\n";
+        std::cout << "int: " << static_cast<int>(conv) << '\n';
+        std::cout << "float: " << toConvert << "f" << '\n';
+        std::cout << "double: " << toConvert << '\n';
+    }
+}
+
+bool    check_if_double(std::string str)
+{
+    int p = 0;
+    int f = 0;
+    for(int i = 0; str[i]; i++)
+    {
+        if (str[i] == '.')
+            p++;
+        if (str[i] == 'f')
+            f++;
+    }
+    if (p == 1 && f == 0)
+        return true;
+    return false;
+}
+
+bool    check_special_double(std::string str)
+{
+    for (int i = 0; str[i]; i++)
+    {
+        if ((str[i] == '.' && str[i + 1] == '0') || (str[i] == '.' && str[i + 1] == '\0')
+            || (str[i] == '.' && str[i + 1] == 'f'))
+            return true;
+    }
+    return false;
 }
 
 bool    check_if_float(std::string str)
@@ -66,3 +110,27 @@ bool    check_if_num(std::string str)
     return false;
 }
 
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	res;
+	int	sign;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = res * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (res * sign);
+}
