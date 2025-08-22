@@ -6,6 +6,11 @@ void ScalarConvert::convert(std::string toConvert)
     char *endp;
     float conv = std::strtof(toConvert.c_str(), &endp);
 
+    if (conv > FLT_MAX || conv < FLT_MIN)
+    {
+        std::cout << "conversion impossible, int overflow\n";
+        exit (1);
+    }
     if ((toConvert[0] >= 33 && toConvert[0] <= 126) && toConvert.size() == 1 
         && check_if_num(toConvert) == false)
     {
@@ -20,12 +25,9 @@ void ScalarConvert::convert(std::string toConvert)
             std::cout << "char: " << static_cast<char>(Ivalue) << '\n';
         else
             std::cout << "char: not displayable\n";
-        if (Ivalue > INT_MAX || Ivalue < INT_MIN)
-            std::cout << "int: int overflow\n";
-        else
-            std::cout << "int: " << Ivalue << '\n';
-        std::cout << "float: " << static_cast<float>(Ivalue) << ".0f" << '\n';
-        std::cout << "double: " << static_cast<double>(Ivalue) << ".0" <<'\n';
+        std::cout << "int: " << conv << '\n';
+        std::cout << "float: " << static_cast<float>(conv) << ".0f" << '\n';
+        std::cout << "double: " << static_cast<double>(conv) << ".0" <<'\n';
     }
     if (check_if_float(toConvert) == true)
     {
@@ -51,6 +53,32 @@ void ScalarConvert::convert(std::string toConvert)
         std::cout << "float: " << toConvert << "f" << '\n';
         std::cout << "double: " << toConvert << '\n';
     }
+    if (toConvert == "nan" || toConvert == "nanf")
+    {
+        std::cout << "char: impossible\n";
+        std::cout << "int: impossible\n";
+        std::cout << "float: nanf\n";
+        std::cout << "double: nan\n";
+    }
+    if (toConvert == "-inff" || toConvert == "+inff" 
+        || toConvert == "-inf" || toConvert == "+inf")
+    {
+        if (toConvert == "-inff" || toConvert == "-inf")
+        {
+            std::cout << "char: impossible\n";
+            std::cout << "int: impossible\n";
+            std::cout << "float: -inff\n";
+            std::cout << "double: -inf\n";
+        }
+        else
+        {
+            std::cout << "char: impossible\n";
+            std::cout << "int: impossible\n";
+            std::cout << "float: +inff\n";
+            std::cout << "double: +inf\n";
+        }
+    }
+
 }
 
 bool    check_if_double(std::string str)
@@ -108,29 +136,4 @@ bool    check_if_num(std::string str)
     if (c == strlen(str.c_str()))
         return true;
     return false;
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	res;
-	int	sign;
-
-	res = 0;
-	sign = 1;
-	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
 }
