@@ -6,6 +6,7 @@
 #include <bits/stdc++.h>
 #include <sstream>
 #include <string>
+#include <limits.h>
 
 class ScalarConvert
 {
@@ -21,4 +22,7 @@ class ScalarConvert
 
 bool    check_if_num(std::string str);
 bool    check_if_float(std::string str);
+bool    check_special_double(std::string str);
+bool    check_if_double(std::string str);
+int	ft_atoi(const char *nptr);
 #endif
