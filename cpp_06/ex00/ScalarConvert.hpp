@@ -24,5 +24,6 @@ bool    check_if_num(std::string str);
 bool    check_if_float(std::string str);
 bool    check_special_double(std::string str);
 bool    check_if_double(std::string str);
-int	ft_atoi(const char *nptr);
+void    check_special_cases(std::string toConvert);
+void    check_characters(std::string str);
 #endif
