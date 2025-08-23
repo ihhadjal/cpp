@@ -7,6 +7,11 @@ void ScalarConvert::convert(std::string toConvert)
     float conv = std::strtof(toConvert.c_str(), &endp);
 
     check_characters(toConvert);
+    if (toConvert.length() > 1 && check_if_phrase(toConvert) == true)
+    {
+        std::cout << "error: cannot convert phrases\n";
+        exit (1);
+    }
     if ((toConvert[0] >= 33 && toConvert[0] <= 126) && toConvert.size() == 1 
         && check_if_num(toConvert) == false)
     {
@@ -17,7 +22,7 @@ void ScalarConvert::convert(std::string toConvert)
     }
     if (check_if_num(toConvert) == true)
     {
-        if (conv > FLT_MAX || conv < FLT_MIN)
+        if (conv > FLT_MAX)
         {
             std::cout << "error: int overflow\n";
             exit (1);

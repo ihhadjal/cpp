@@ -83,7 +83,8 @@ void    check_characters(std::string str)
         if (isdigit(str[i]))
             flag = 1;
         if ((flag == 1 && (str[i] >= 33 && str[i] <= 45)) 
-            || (flag == 1 && ((str[i] >= 58 && str[i] <= 126) 
+            || (flag == 1 && ((str[i] >= 58 && str[i] <= 101) 
+            || (flag == 1 && (str[i] >= 103 && str[i] <= 126))
             || (flag == 1 && str[i] == 47))))
         {
             std::cout << "error: int does not support characters\n";
@@ -99,9 +100,10 @@ bool    check_if_num(std::string str)
     {
         if (isdigit(str[i]) || str[i] == '-' || str[i] == '+')
             c++;
-        if (str[i] == ' ' || str[i] == '\t')
+        if (str[i] == ' ' || str[i] == '\t' || (str[i] >= 0 && str[i] <= 32) 
+            || str[i] == 127)
         {
-            std::cout << "error: spaces are not allowed\n";
+            std::cout << "error: blank/white spaces are not allowed\n";
             exit (1);
         }
     }
@@ -110,4 +112,17 @@ bool    check_if_num(std::string str)
     return false;
 }
 
+bool check_if_phrase(std::string str)
+{
+    size_t c = 0;
 
+    for (int i = 0; str[i]; i++)
+    {
+        if (isalpha(str[i]))
+            c++;
+    }
+    if (c == strlen(str.c_str()) && str != "nan" && str != "nanf" && str != "+inff" 
+        && str != "-inff" && str != "+inf" && str != "-inf")
+        return true;
+    return false;
+}

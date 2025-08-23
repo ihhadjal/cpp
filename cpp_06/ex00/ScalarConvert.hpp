@@ -26,4 +26,5 @@ bool    check_special_double(std::string str);
 bool    check_if_double(std::string str);
 void    check_special_cases(std::string toConvert);
 void    check_characters(std::string str);
+bool check_if_phrase(std::string str);
 #endif
