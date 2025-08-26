@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <bits/stdc++.h>
+#include <exception>
 
 class Base
 {
@@ -14,7 +15,7 @@ class Base
 
 Base *generate(void);
 void  identify(Base *p);
-// void  identify(Base &p);
+void  identify(Base &p);
 
 class A : public Base{};
 class B : public Base{};
