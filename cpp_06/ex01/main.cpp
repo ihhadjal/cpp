@@ -11,7 +11,6 @@ int main()
 
 
     uintptr_t serializedData = Serializer::serialize(&dataBase);
-    std::cout << "Serialized Data: " << serializedData << '\n';
     Data *deserializedData = Serializer::deserialize(serializedData);
     std::cout << "Data after deserialization: " << '\n';
     std::cout << "id: " << deserializedData->_id << '\n';
