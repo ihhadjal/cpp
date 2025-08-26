@@ -50,21 +50,21 @@ void    identify(Base &p)
         tmp = dynamic_cast<A&>(p);
         std::cout << "p = A\n";
     }
-    catch(...)
+    catch(const std::bad_cast &)
     {
         try
         {
             tmp = dynamic_cast<B&>(p);
             std::cout << "p = B\n";
         }
-        catch(...)
+        catch(const std::bad_cast &)
         {
             try
             {
                 tmp = dynamic_cast<C&>(p);
                 std::cout << "p = C\n";
             }
-            catch(...){
+            catch(const std::bad_cast &){
             }
         }
     }
