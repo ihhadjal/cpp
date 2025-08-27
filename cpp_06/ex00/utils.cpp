@@ -98,7 +98,7 @@ bool    check_if_num(std::string str)
     size_t c = 0;
     for (int i = 0; str[i]; i++)
     {
-        if (isdigit(str[i]) || str[i] == '-' || str[i] == '+')
+        if (isdigit(str[i]) || (strlen(str.c_str()) > 1 && str[i] == '+') || (strlen(str.c_str()) > 1 && str[i] == '-'))
             c++;
         if (str[i] == ' ' || str[i] == '\t' || (str[i] >= 0 && str[i] <= 32) 
             || str[i] == 127)
