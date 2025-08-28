@@ -19,7 +19,7 @@ int	main(void)
     std::cout << "\n=== Testing ShrubberyCreationForm ===" << std::endl;
     form = intern.makeForm("shruberry request", "iheb");
 
-    std::cout << "\n=== Non Existing form ===" << std::endl;
+    std::cout << "\n=== Testing Non Existing form ===" << std::endl;
     form = intern.makeForm("iheb", "Bender");
     delete form;
 }
