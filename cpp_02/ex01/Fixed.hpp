@@ -16,10 +16,10 @@ class Fixed
     Fixed(int const intValue);
     Fixed(float const floatValue);
     ~Fixed();
+    Fixed &operator=(Fixed const &rhs);
     float toFloat(void) const;
     int   toInt(void) const;
     int   getValue() const;
-    Fixed &operator=(Fixed const &rhs);
 };
 
 std::ostream &operator<<(std::ostream  &o, const Fixed &i);
