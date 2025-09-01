@@ -35,6 +35,8 @@ int main(void)
     for (unsigned int i = 0; i < stringArray.size(); i++)
         std::cout << stringArray[i] << ' ';
     std::cout << '\n';
+    std::cout << "[] operator test: \n";
+    std::cout << "String at index 3: " << stringArray[2] << '\n';
     std::cout << "Exceptions tests:\n";
     try
     {
