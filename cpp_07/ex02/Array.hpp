@@ -29,7 +29,7 @@ class Array
             _size = rhs._size;
             if (_size > 0)
             {
-                _elements = new T(_size);
+                _elements = new T[_size];
                 for (unsigned int i = 0; i < _size; i++){
                     _elements[i] = rhs._elements[i];
                 }
