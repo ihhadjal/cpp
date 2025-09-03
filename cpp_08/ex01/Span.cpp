@@ -52,10 +52,20 @@ int Span::shortestSpan()
     Span::NoNumberStoredException exception("Error: no number stored / only one number is stored\n");
     if (this->_vct.size() == 0 || this->_vct.size() == 1) 
         throw exception;
-        
-    std::sort(this->_vct.begin(), this->_vct.end());
 
+    std::sort(this->_vct.begin(), this->_vct.end());
     int x = this->_vct[0];
     int y = this->_vct[1];
     return (y - x);
+}
+
+void Span::fillArray(unsigned int n)
+{
+    srand(time(NULL));
+    
+    for (unsigned int i = 0; i < n; i++)
+    {
+        int random = rand();
+        addNumber(random);
+    }
 }

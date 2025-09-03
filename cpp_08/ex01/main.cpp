@@ -2,15 +2,13 @@
 
 int main()
 {
-    Span sp = Span(10);
+    Span sp = Span(1000000);
 
     try
     {
-        sp.addNumber(50);
-        sp.addNumber(100);
-        sp.addNumber(130);
-        sp.addNumber(1000);
+        sp.fillArray(1000000);
         std::cout << sp.shortestSpan() << '\n';
+        std::cout << sp.longestSpan() << '\n';
     }
     catch(const std::exception& e)
     {
