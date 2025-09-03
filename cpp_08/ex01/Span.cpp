@@ -19,4 +19,9 @@ Span &Span::operator=(const Span &rhs)
 
 void   Span::addNumber(unsigned int n)
 {
+    if (this->_vct.size() >= this->_N)
+        throw std::exception();
+    else
+        this->_vct.push_back(n);
 }
+
