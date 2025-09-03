@@ -1,12 +1,14 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
+
 #include <iostream>
 #include <vector>
 #include <list>
 #include <map>
 #include <exception>
 #include <algorithm>
+#include <bits/stdc++.h>
 
 class Span
 {
@@ -21,10 +23,19 @@ class Span
     Span &operator=(const Span &rhs);
     
     void addNumber(unsigned int n);
-    void shortestSpan(unsigned int n);
-    void longestSpan(unsigned int n);
+    int shortestSpan();
+    int longestSpan();
     std::vector<unsigned int> _vct;
-};
 
+    class NoNumberStoredException : public std::exception
+    {
+        private:
+        const char *_msg;
+
+        public:
+        NoNumberStoredException(const char *msg);
+        const char *what() const throw();
+    };
+};
 
 #endif
