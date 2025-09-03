@@ -23,6 +23,7 @@ class Span
     Span &operator=(const Span &rhs);
     
     void addNumber(unsigned int n);
+    void fillArray(unsigned int n);
     int shortestSpan();
     int longestSpan();
     std::vector<unsigned int> _vct;
