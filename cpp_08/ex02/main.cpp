@@ -24,3 +24,23 @@ int main()
     std::stack<int> s(mstack);
     return 0;
 }
+
+
+// int main()
+// {
+//     MutantStack<int>mstack;
+//     MutantStack<int>nstack;
+
+//     std::cout << "---empty stack Test: ---\n";
+//     if (mstack.empty())
+//         std::cout << "Stack is empty\n";
+//     else
+//         std::cout << "Stack is not empty\n";
+//     mstack.push(4);
+//     mstack.push(6);
+//     mstack.push(5);
+//     std::cout << "---stack elements: ---\n";
+//     for (MutantStack<int>::iterator::iterator it = mstack.begin(); it != mstack.end(); ++it)
+//         std::cout << *it << '\n';
+//     std::cout << "size: " << mstack.size() << '\n';
+// }
