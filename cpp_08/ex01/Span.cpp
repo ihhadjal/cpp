@@ -23,5 +23,6 @@ void   Span::addNumber(unsigned int n)
         throw std::exception();
     else
         this->_vct.push_back(n);
+        
 }
 
