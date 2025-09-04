@@ -38,7 +38,7 @@ void   Span::addNumber(unsigned int n)
 int  Span::longestSpan()
 {
     Span::NoNumberStoredException exception("Error: no number stored / only one number is stored\n");
-    if (this->_vct.size() == 0 || this->_vct.size() == 1) 
+    if (this->_vct.size() < 2)
         throw exception;
     
     int min = *(std::min_element(this->_vct.begin(), this->_vct.end()));
