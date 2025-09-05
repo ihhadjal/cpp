@@ -39,7 +39,9 @@ void        BTC::parse(char *argv)
         value = line.substr(line.find('|') + 2, line.size());
         parse_date(parse_exception);
         parse_value(parse_exception);
-        std ::cout  <<  this->_map[date] * atof(value.c_str()) << "\n";        
+        std::cout << date << " => " << value << " = " 
+        << this->_map[date] * atof(value.c_str()) << '\n';
+        
     }
 }
 
@@ -52,7 +54,6 @@ void    BTC::parse_date(BTC::ExceptionClass parse_exception)
     year = date.substr(0, date.find('-'));
     month = date.substr(date.find('-') + 1, 2);
     day = date.substr(8, date.size());
-
     if (year.size() != 4 || month.size() != 2 || day.size() != 2
         || atoi(year.c_str()) > 2025 || atoi(month.c_str()) > 12 || atoi(day.c_str()) > 31)
         throw parse_exception;
@@ -76,8 +77,6 @@ void    BTC::parse_value(BTC::ExceptionClass parse_exception)
         std::cout << "Error: too large a number\n";
         exit (1);
     }
-    (void)parse_exception;
-
 }
 
 void    BTC::addMap()
@@ -88,11 +87,11 @@ void    BTC::addMap()
     inFile.open("DATA/data.csv");
     if (!inFile)
         throw std::exception();
-    while (getline(inFile, line)) {
+    while (getline(inFile, line))
+    {
         int pos = line.find(',');
         this->vctDate = line.substr(0, pos);
         this->vctValue = line.substr(pos + 1, line.size());
         this->_map[this->vctDate] = atof(this->vctValue.c_str());
     }
 }
-

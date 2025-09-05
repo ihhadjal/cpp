@@ -8,7 +8,7 @@ int main(int argc, char **argv)
     {
         try
         {
-            exchange.addVector();
+            exchange.addMap();
             exchange.parse(argv[1]);
         }
         catch(const std::exception& e)
