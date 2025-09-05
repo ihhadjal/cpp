@@ -15,6 +15,8 @@ class BTC
     std::vector<std::string> _vct;
     std::string   date;
     std::string   value;
+    std::string   vctValue;
+    std::string   vctDate;
 
     public:
     BTC();

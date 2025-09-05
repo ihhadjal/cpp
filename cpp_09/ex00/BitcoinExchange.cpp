@@ -52,7 +52,8 @@ void    BTC::parse_date(BTC::ExceptionClass parse_exception)
     month = date.substr(date.find('-') + 1, 2);
     day = date.substr(8, date.size());
 
-    if (year.size() != 4 || month.size() != 2 || day.size() != 3)
+    if (year.size() != 4 || month.size() != 2 || day.size() != 3 
+        || atoi(year.c_str()) > 2025 || atoi(month.c_str()) > 12 || atoi(day.c_str()) > 31)
         throw parse_exception;
     for (int i = 0; date[i]; i++)
     {
@@ -60,6 +61,7 @@ void    BTC::parse_date(BTC::ExceptionClass parse_exception)
             && date[i] != '\n' && date[i] != ' ' && date[i] != '-')
             throw parse_exception;
     }
+    (void)parse_exception;
 }
 
 
@@ -75,6 +77,8 @@ void    BTC::parse_value(BTC::ExceptionClass parse_exception)
         std::cout << "Error: too large a number\n";
         exit (1);
     }
+    (void)parse_exception;
+
 }
 
 void    BTC::addVector()
@@ -87,4 +91,12 @@ void    BTC::addVector()
         throw std::exception();
     while (getline(inFile, line))
         this->_vct.push_back(line);
+    for (std::vector<std::string>::iterator it = this->_vct.begin(); it != this->_vct.end(); ++it)
+    {
+        std::string &line = *it;
+        int pos = line.find(',');
+        this->vctDate = line.substr(0, pos);
+        this->vctValue = line.substr(pos + 1, line.size());
+    }
 }
+
