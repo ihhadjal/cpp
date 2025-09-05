@@ -3,16 +3,25 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include <exception>
 #include <fstream>
 #include <stdlib.h> 
 #include <limits.h>
+#include <string>
+/*
 
+map["date"] = atof(valeur);
+
+date wanted =  first date
+
+map[date_wanted] * valeur wanted
+*/
 
 class BTC
 {
     private:
-    std::vector<std::string> _vct;
+    std::map<std::string, float> _map;
     std::string   date;
     std::string   value;
     std::string   vctValue;
@@ -24,7 +33,7 @@ class BTC
     ~BTC();
     BTC &operator=(const BTC &rhs);
     void    parse(char *argv);
-    void    addVector(void);
+    void    addMap(void);
     class ExceptionClass : public std::exception
     {
         private:
