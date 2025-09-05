@@ -1,7 +1,6 @@
 #include "BitcoinExchange.hpp"
 
 BTC::BTC(){}
-
 BTC::BTC(const BTC &src){
     *this = src;
 }
@@ -12,13 +11,14 @@ BTC &BTC::operator=(const BTC &rhs){
     }
     return *this;
 }
-
 BTC::ExceptionClass::ExceptionClass(const char *msg) : _msg(msg){}
 
 const char *BTC::ExceptionClass::what() const throw(){
     return this->_msg;
 }
 
+std::string BTC::getDate(){return this->date;}
+std::string BTC::getValue(){return this->value;}
 
 void        BTC::parse(char *argv)
 {
@@ -27,8 +27,6 @@ void        BTC::parse(char *argv)
 
     std::ifstream inFile;
     std::string   line;
-    std::string   date;
-    std::string   value;
 
     inFile.open(argv, std::fstream::in | std::ifstream::out);
     if (!inFile)
@@ -38,13 +36,13 @@ void        BTC::parse(char *argv)
         if (line.find('|') == std::string::npos)
             throw parse_exception;
         date = line.substr(0, line.find('|'));
-        value = line.substr(line.find('|') + 1, line.size());
-        parse_date(date, parse_exception);
-        parse_value(value, parse_exception);
+        value = line.substr(line.find('|') + 2, line.size());
+        parse_date(parse_exception);
+        parse_value(parse_exception);
     }
 }
 
-void    parse_date(std::string date, BTC::ExceptionClass parse_exception)
+void    BTC::parse_date(BTC::ExceptionClass parse_exception)
 {
     std::string year;
     std::string month;
@@ -65,7 +63,28 @@ void    parse_date(std::string date, BTC::ExceptionClass parse_exception)
 }
 
 
-void    parse_value(std::string value, BTC::ExceptionClass parse_exception)
+void    BTC::parse_value(BTC::ExceptionClass parse_exception)
 {
-    
+    for (int i = 0; value[i]; i++)
+    {
+        if ((!isdigit(value[i]) && value[i] != '.'))
+            throw parse_exception;
+    }
+    if (value.size() >= 10)
+    {
+        std::cout << "Error: too large a number\n";
+        exit (1);
+    }
+}
+
+void    BTC::addVector()
+{
+    std::ifstream inFile;
+    std::string   line;
+
+    inFile.open("DATA/data.csv");
+    if (!inFile)
+        throw std::exception();
+    while (getline(inFile, line))
+        this->_vct.push_back(line);
 }

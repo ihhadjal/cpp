@@ -9,6 +9,7 @@ int main(int argc, char **argv)
         try
         {
             exchange.parse(argv[1]);
+            exchange.addVector();
         }
         catch(const std::exception& e)
         {
