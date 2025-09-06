@@ -34,17 +34,8 @@ class BTC
     BTC &operator=(const BTC &rhs);
     void    parse(char *argv);
     void    addMap(void);
-    class ExceptionClass : public std::exception
-    {
-        private:
-        const char *_msg;
-        
-        public:
-        ExceptionClass(const char *msg);
-        const char *what() const throw();
-    };
-    void    parse_date(BTC::ExceptionClass parse_exception);
-    void    parse_value(BTC::ExceptionClass parse_exception);
+    int    parse_date();
+    int    parse_value();
     std::string    getDate(void);
     std::string    getValue(void);
 };
