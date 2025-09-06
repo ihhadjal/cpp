@@ -6,16 +6,8 @@ int main(int argc, char **argv)
 
     if (argc == 2)
     {
-        try
-        {
-            exchange.addMap();
-            exchange.parse(argv[1]);
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        
+        exchange.addMap();
+        exchange.parse(argv[1]);
     }
     else
         std::cout << "Error: could not open file" << '\n';
