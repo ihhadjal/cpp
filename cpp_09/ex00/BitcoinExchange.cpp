@@ -37,8 +37,22 @@ void        BTC::parse(char *argv)
             value = line.substr(line.find('|') + 2, line.size());
             if (parse_date() == 0 && parse_value() == 0)
             {
-                std::cout << date << " => " << value << " = " 
-                << this->_map[date] * atof(value.c_str()) << '\n';
+                if (this->_map[date] != 0)
+                {
+                    std::cout << date << " => " << value << " = " 
+                    << this->_map[date] * atof(value.c_str()) << '\n';
+                }
+                else
+                {
+                    std::map<std::string, float>::iterator it = _map.lower_bound(date);
+                    if (it != _map.begin()) 
+                    {
+                        std::map<std::string, float>::iterator prev = it;
+                        --prev;
+                        std::cout << date << " => " << value << " = " 
+                        << prev->second * atof(value.c_str()) << '\n';
+                    }
+                }
             }
         }
         catch(...){
