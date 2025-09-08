@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 
     if (argc > 2)
     {
-        algo.parse(argv);
+        algo.mergeSort(argv);
     }
     else
         std::cout << "Error: not enough arguments\n";
