@@ -76,8 +76,8 @@ void Sort::fordJohnson(Container &cont)
         return;
 
     std::vector<std::pair<typename Container::value_type, typename Container::value_type> > pairs;
-    typename Container::value_type straggler = 0;
-    bool hasStraggler = false;
+    typename Container::value_type Odd = 0;
+    bool hasOdd = false;
 
     for (size_t i = 0; i < cont.size(); i += 2)
     {
@@ -92,8 +92,8 @@ void Sort::fordJohnson(Container &cont)
         }
         else
         {
-            straggler = cont[i];
-            hasStraggler = true;
+            Odd = cont[i];
+            hasOdd = true;
         }
     }
 
@@ -142,10 +142,10 @@ void Sort::fordJohnson(Container &cont)
         }
     }
 
-    if (hasStraggler)
+    if (hasOdd)
     {
-        typename Container::iterator pos = binarySearch(result, result.begin(), result.end(), straggler);
-        result.insert(pos, straggler);
+        typename Container::iterator pos = binarySearch(result, result.begin(), result.end(), Odd);
+        result.insert(pos, Odd);
     }
 
     cont = result;
