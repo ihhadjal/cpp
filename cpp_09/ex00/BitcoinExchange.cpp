@@ -26,9 +26,19 @@ void        BTC::parse(char *argv)
 
     inFile.open(argv, std::fstream::in | std::ifstream::out);
     if (!inFile)
+    {
         std::cout << "Error: could not open file\n";
+        exit (1);
+    }
+    FILE *pfile;
+    pfile = fopen(argv, "r");
+    int c = getc(pfile);
+    if (c == EOF)
+        std::cout << "Error: the file is empty\n";
     while (getline(inFile, line))
     {
+        if (line.empty())
+            std::cout << "Error: the file is empty\n";
         if (line.find('|') == std::string::npos)
             std::cout << "invalid line '|' is missing\n";
         try
@@ -59,6 +69,7 @@ void        BTC::parse(char *argv)
             std::cout << "Error: can not accept empty values" << '\n';
         }
     }
+    inFile.close();
 }
 
 int    BTC::parse_date()
@@ -94,6 +105,12 @@ int    BTC::parse_value()
         std::cout << "Error: can not accept empty values" << '\n';
         return 1;
     }
+    int nb = atof(value.c_str());
+    if (nb > 1000 || nb < 0)
+    {
+        std::cout << "Error: number is not valid\n";
+        return 1;
+    }
     for (size_t i = 0; i < value.size(); ++i)
     {
         if (!isdigit(value[i]) && value[i] != '.')
@@ -101,11 +118,6 @@ int    BTC::parse_value()
             std::cout << "Error: invalid character => " << value[i] << '\n';
             return 1;
         }
-    }
-    if (value.size() >= 10)
-    {
-        std::cout << "Error: too large a number\n";
-        return 1;
     }
     return 0;
 }
@@ -117,7 +129,18 @@ void    BTC::addMap()
 
     inFile.open("DATA/data.csv");
     if (!inFile)
+    {
         std::cout << "Error: DB file is not accessible\n";
+        exit (1);
+    }
+    FILE *pfile;
+    pfile = fopen("DATA/data.csv", "r");
+    int c = getc(pfile);
+    if (c == EOF)
+    {
+        std::cout << "Error: the data file is empty\n";
+        exit (1);
+    }
     while (getline(inFile, line))
     {
         int pos = line.find(',');
