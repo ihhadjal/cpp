@@ -87,9 +87,9 @@ void Sort::sort(Container &cont)
     count++;
     double time = ((double)(end - start) / CLOCKS_PER_SEC) * 1000000;
     if (typeid(Container) == typeid(std::vector<unsigned int>))
-        std::cout << "Time to process a range of " << cont.size() << " elements with std::vector : " << time << " us" << std::endl;
+    std::cout << "Time to process a range of " << cont.size() << " elements with std::vector : " << time << " us" << std::endl;
     else
-        std::cout << "Time to process a range of " << cont.size() << " elements with std::deque : " << time << " us" << std::endl;
+    std::cout << "Time to process a range of " << cont.size() << " elements with std::deque : " << time << " us" << std::endl;
 }
 
 template <typename Container>
@@ -98,103 +98,113 @@ void Sort::fordJohnson(Container &cont)
     if (cont.size() <= 1)
         return;
 
-    std::vector<std::pair<typename Container::value_type, typename Container::value_type> > pairs;
+    if (cont.size() == 2)
+    {
+        if (cont[0] > cont[1])
+            std::swap(cont[0], cont[1]);
+        return;
+    }
     typename Container::value_type Odd = 0;
-    bool hasOdd = false;
-
-    for (size_t i = 0; i < cont.size(); i += 2)
+    bool hasOdd = (cont.size() % 2 == 1);
+    if (hasOdd)
+        Odd = cont.back();
+    typedef std::pair<typename Container::value_type, typename Container::value_type> Pair;
+    std::vector<Pair> pairs;
+    
+    for (size_t i = 0; i + 1 < cont.size(); i += 2)
     {
-        if (i + 1 < cont.size())
-        {
-            typename Container::value_type a = cont[i];
-            typename Container::value_type b = cont[i + 1];
-            if (a > b)
-                pairs.push_back(std::make_pair(b, a));
-            else
-                pairs.push_back(std::make_pair(a, b));
-        }
+        if (cont[i] <= cont[i + 1])
+            pairs.push_back(std::make_pair(cont[i], cont[i + 1]));
         else
+            pairs.push_back(std::make_pair(cont[i + 1], cont[i]));
+    }
+    Container largers;
+    for (size_t i = 0; i < pairs.size(); ++i)
+        largers.push_back(pairs[i].second);
+
+    fordJohnson(largers);
+    std::vector<Pair> sortedPairs;
+    std::vector<bool> used(pairs.size(), false);
+    
+    for (size_t i = 0; i < largers.size(); ++i)
+    {
+        for (size_t j = 0; j < pairs.size(); ++j)
         {
-            Odd = cont[i];
-            hasOdd = true;
+            if (!used[j] && pairs[j].second == largers[i])
+            {
+                sortedPairs.push_back(pairs[j]);
+                used[j] = true;
+                break;
+            }
         }
     }
-
-    Container largerElements;
-    for (size_t i = 0; i < pairs.size(); ++i)
-    {
-        largerElements.push_back(pairs[i].second);
-    }
-
-    if (largerElements.size() > 1)
-        fordJohnson(largerElements);
-
     Container result;
-
-    if (!pairs.empty())
-        result.push_back(pairs[0].first);
-
-    for (typename Container::iterator it = largerElements.begin(); it != largerElements.end(); ++it)
-        result.push_back(*it);
-
-    std::vector<int> jacobsthal = generateJacobsthalSequence(pairs.size());
-    std::vector<bool> inserted(pairs.size(), false);
-
-    if (!pairs.empty())
-        inserted[0] = true;
-
-    for (size_t i = 0; i < jacobsthal.size(); ++i)
+    std::vector<typename Container::value_type> pendingSmalls;
+    
+    if (!sortedPairs.empty())
     {
-        int idx = jacobsthal[i] - 1;
-        if (idx >= 0 && idx < static_cast<int>(pairs.size()) && !inserted[idx])
+        result.push_back(sortedPairs[0].first);
+        for (size_t i = 0; i < sortedPairs.size(); ++i)
+            result.push_back(sortedPairs[i].second);
+        for (size_t i = 1; i < sortedPairs.size(); ++i)
+            pendingSmalls.push_back(sortedPairs[i].first);
+    }
+    if (!pendingSmalls.empty())
+    {
+        std::vector<int> jacobsthal = generateJacobsthalSequence(pendingSmalls.size());
+        std::vector<bool> inserted(pendingSmalls.size(), false);
+        for (size_t i = 0; i < jacobsthal.size(); ++i)
         {
-            typename Container::value_type valueToInsert = pairs[idx].first;
-            typename Container::iterator pos = binarySearch(result, result.begin(), result.end(), valueToInsert);
-            result.insert(pos, valueToInsert);
-            inserted[idx] = true;
+            int idx = jacobsthal[i] - 1;
+            if (idx >= 0 && idx < static_cast<int>(pendingSmalls.size()) && !inserted[idx])
+            {
+                typename Container::value_type val = pendingSmalls[idx];
+                size_t largePos = 0;
+                for (size_t j = 0; j < result.size(); ++j)
+                {
+                    if (result[j] == sortedPairs[idx + 1].second)
+                    {
+                        largePos = j;
+                        break;
+                    }
+                }
+                typename Container::iterator pos = std::lower_bound(
+                    result.begin(), 
+                    result.begin() + largePos + 1, 
+                    val
+                );
+                result.insert(pos, val);
+                inserted[idx] = true;
+            }
+        }
+        for (size_t i = 0; i < pendingSmalls.size(); ++i)
+        {
+            if (!inserted[i])
+            {
+                typename Container::value_type val = pendingSmalls[i];
+                size_t largePos = 0;
+                for (size_t j = 0; j < result.size(); ++j)
+                {
+                    if (result[j] == sortedPairs[i + 1].second)
+                    {
+                        largePos = j;
+                        break;
+                    }
+                }
+                typename Container::iterator pos = std::lower_bound(
+                    result.begin(), 
+                    result.begin() + largePos + 1, 
+                    val
+                );
+                result.insert(pos, val);
+            }
         }
     }
-
-    for (size_t i = 0; i < pairs.size(); ++i)
-    {
-        if (!inserted[i])
-        {
-            typename Container::value_type valueToInsert = pairs[i].first;
-            typename Container::iterator pos = binarySearch(result, result.begin(), result.end(), valueToInsert);
-            result.insert(pos, valueToInsert);
-        }
-    }
-
     if (hasOdd)
     {
-        typename Container::iterator pos = binarySearch(result, result.begin(), result.end(), Odd);
+        typename Container::iterator pos = std::lower_bound(result.begin(), result.end(), Odd);
         result.insert(pos, Odd);
     }
-
     cont = result;
 }
-
-template <typename Container>
-typename Container::iterator Sort::binarySearch(Container &,
-                                                typename Container::iterator begin,
-                                                typename Container::iterator end,
-                                                const typename Container::value_type &value)
-{
-    typename Container::iterator left = begin;
-    typename Container::iterator right = end;
-
-    while (left != right)
-    {
-        typename Container::iterator mid = left;
-        std::advance(mid, std::distance(left, right) / 2);
-
-        if (*mid < value)
-            left = ++mid;
-        else
-            right = mid;
-    }
-
-    return left;
-}
-
 #endif

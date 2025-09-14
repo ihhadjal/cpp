@@ -48,6 +48,7 @@ void Sort::mergeSort(char **argv)
     sort(this->_vct);
     sort(this->_lst);
     checkSort(this->_lst);
+    checkSort(this->_vct);
 }
 
 std::vector<int> Sort::generateJacobsthalSequence(int n)
@@ -81,3 +82,4 @@ std::vector<int> Sort::generateJacobsthalSequence(int n)
 
     return jacobsthal;
 }
+
