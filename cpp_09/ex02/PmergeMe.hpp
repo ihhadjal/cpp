@@ -87,9 +87,9 @@ void Sort::sort(Container &cont)
     count++;
     double time = ((double)(end - start) / CLOCKS_PER_SEC) * 1000000;
     if (typeid(Container) == typeid(std::vector<unsigned int>))
-    std::cout << "Time to process a range of " << cont.size() << " elements with std::vector : " << time << " us" << std::endl;
+        std::cout << "Time to process a range of " << cont.size() << " elements with std::vector : " << time << " us" << std::endl;
     else
-    std::cout << "Time to process a range of " << cont.size() << " elements with std::deque : " << time << " us" << std::endl;
+        std::cout << "Time to process a range of " << cont.size() << " elements with std::deque : " << time << " us" << std::endl;
 }
 
 template <typename Container>
@@ -110,7 +110,7 @@ void Sort::fordJohnson(Container &cont)
         Odd = cont.back();
     typedef std::pair<typename Container::value_type, typename Container::value_type> Pair;
     std::vector<Pair> pairs;
-    
+
     for (size_t i = 0; i + 1 < cont.size(); i += 2)
     {
         if (cont[i] <= cont[i + 1])
@@ -125,7 +125,7 @@ void Sort::fordJohnson(Container &cont)
     fordJohnson(largers);
     std::vector<Pair> sortedPairs;
     std::vector<bool> used(pairs.size(), false);
-    
+
     for (size_t i = 0; i < largers.size(); ++i)
     {
         for (size_t j = 0; j < pairs.size(); ++j)
@@ -140,7 +140,7 @@ void Sort::fordJohnson(Container &cont)
     }
     Container result;
     std::vector<typename Container::value_type> pendingSmalls;
-    
+
     if (!sortedPairs.empty())
     {
         result.push_back(sortedPairs[0].first);
@@ -169,10 +169,9 @@ void Sort::fordJohnson(Container &cont)
                     }
                 }
                 typename Container::iterator pos = std::lower_bound(
-                    result.begin(), 
-                    result.begin() + largePos + 1, 
-                    val
-                );
+                    result.begin(),
+                    result.begin() + largePos + 1,
+                    val);
                 result.insert(pos, val);
                 inserted[idx] = true;
             }
@@ -192,10 +191,9 @@ void Sort::fordJohnson(Container &cont)
                     }
                 }
                 typename Container::iterator pos = std::lower_bound(
-                    result.begin(), 
-                    result.begin() + largePos + 1, 
-                    val
-                );
+                    result.begin(),
+                    result.begin() + largePos + 1,
+                    val);
                 result.insert(pos, val);
             }
         }
