@@ -47,6 +47,7 @@ void Sort::mergeSort(char **argv)
     printContainer(this->_vct);
     sort(this->_vct);
     sort(this->_lst);
+    checkSort(this->_lst);
 }
 
 std::vector<int> Sort::generateJacobsthalSequence(int n)

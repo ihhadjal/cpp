@@ -14,7 +14,7 @@ class Sort
 private:
     std::vector<unsigned int> _vct;
     std::deque<unsigned int> _lst;
-    int                      count;
+    int count;
 
     template <typename Container>
     void fordJohnson(Container &cont);
@@ -47,6 +47,29 @@ void printContainer(Container &cont)
         std::cout << *it << ' ';
     std::cout << '\n';
 }
+template <typename Container>
+void checkSort(Container &cont)
+{
+    if (cont.empty())
+    {
+        std::cout << "Container is empty\n";
+        return;
+    }
+
+    typename Container::iterator it = cont.begin();
+    typename Container::iterator next = it;
+    ++next;
+
+    for (; next != cont.end(); ++it, ++next)
+    {
+        if (*it > *next)
+        {
+            std::cout << "Error: the container is not sorted\n";
+            return;
+        }
+    }
+    std::cout << "Everything is ok the container is sorted\n";
+}
 
 template <typename Container>
 void Sort::sort(Container &cont)
@@ -59,9 +82,9 @@ void Sort::sort(Container &cont)
     if (count == 0)
     {
         std::cout << "After: ";
-        printContainer(cont);    
+        printContainer(cont);
     }
-    count ++;
+    count++;
     double time = ((double)(end - start) / CLOCKS_PER_SEC) * 1000000;
     if (typeid(Container) == typeid(std::vector<unsigned int>))
         std::cout << "Time to process a range of " << cont.size() << " elements with std::vector : " << time << " us" << std::endl;
