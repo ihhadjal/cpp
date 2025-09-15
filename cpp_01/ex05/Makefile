@@ -2,7 +2,7 @@ SRCS = main.cpp Harl.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
-NAME = harl
+NAME = harl 
 
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address

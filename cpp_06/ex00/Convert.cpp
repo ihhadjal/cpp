@@ -24,7 +24,7 @@ void ScalarConvert::convert(std::string toConvert)
     {
         if (conv > FLT_MAX)
         {
-            std::cout << "error: int overflow\n";
+            std::cout << "error: int overflow\n"; 
             exit (1);
         }
         if (Ivalue >= 33 && Ivalue <= 126)

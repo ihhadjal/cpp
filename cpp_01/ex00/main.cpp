@@ -10,7 +10,7 @@ int main()
 
     newZ->announce();
     newZ1->announce();
-    newZ2->announce();
+    newZ2->announce(); 
     newZ3->announce();
 
     randomChump("zombie 5");

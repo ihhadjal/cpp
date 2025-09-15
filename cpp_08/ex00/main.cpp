@@ -14,4 +14,4 @@ int main()
     {
         std::cout << "the number is not in the list\n";
     }
-}
+} 

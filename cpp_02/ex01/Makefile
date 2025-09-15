@@ -9,7 +9,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 RM = rm -rf
 
-GREEN = \033[32m
+GREEN = \033[32m 
 YELLOW = \033[33m
 RED = \033[31m
 RESET = \033[0m

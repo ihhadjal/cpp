@@ -6,7 +6,7 @@
 
 class Fixed
 {
-    private:
+    private: 
     const static int _bits;
     int      _value;
 

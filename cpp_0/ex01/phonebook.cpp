@@ -11,7 +11,7 @@ int main(void)
         std::getline(std::cin, str);
         if (str == "EXIT")
             break;
-        else if (str == "ADD")
+        else if (str == "ADD") 
             repo.addContact(str);
         else if (str == "SEARCH")
             repo.searchContact(str);

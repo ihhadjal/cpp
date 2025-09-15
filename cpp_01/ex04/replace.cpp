@@ -2,7 +2,7 @@
 
 Swap::Swap(std::string s1, std::string s2) : m_toFind(s1), m_replacer(s2)
 {
-}
+} 
 
 std::string Swap::getFind()
 {

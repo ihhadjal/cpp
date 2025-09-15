@@ -13,7 +13,7 @@ Fixed::Fixed(Fixed const &source){
 }
 
 Fixed &Fixed::operator=(Fixed const &rhs){
-    this->_value = rhs.getValue();
+    this->_value = rhs.getValue(); 
 
     return (*this);
 }

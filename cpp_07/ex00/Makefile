@@ -25,7 +25,7 @@ ${NAME}: ${OBJS}
 	${CXX} ${CXXFLAGS} -c $< -o $@
 
 clean:
-	@echo "${RED}Cleaning object files...${RESET}"
+	@echo "${RED}Cleaning object files...${RESET}" 
 	${RM} ${OBJS}
 
 fclean: clean

@@ -22,7 +22,7 @@ Animal &Animal::operator=(const Animal &rhs){
 
 Animal::~Animal(){
     std::cout << "Animal destructor called\n";
-}
+} 
 
 std::string Animal::getType() const{
     return (this->_type);

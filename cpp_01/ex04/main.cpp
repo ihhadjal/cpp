@@ -15,4 +15,4 @@ void    parsing(int argc, char **argv)
         std::cout << "arguments error\n";
         exit (1);
     }
-}
+} 

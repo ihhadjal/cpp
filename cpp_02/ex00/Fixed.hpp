@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <iomanip>
 
-class Fixed
+class Fixed 
 {
     private:
     int _fixedValue;

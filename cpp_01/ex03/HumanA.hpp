@@ -19,4 +19,4 @@ class HumanA
     void attack();
     std::string getType( void ) { return m_weapon.geType(); }
 };
-#endif
+#endif 

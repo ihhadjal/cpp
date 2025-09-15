@@ -11,7 +11,7 @@ void Contact::setFirstName(std::string firstName){
 }
 
 std::string Contact::getLastName(){
-    return(this->m_lastName);
+    return(this->m_lastName); 
 }
 
 void Contact::setLastName(std::string lastName){

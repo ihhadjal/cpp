@@ -10,7 +10,7 @@
 #include <ostream>
 
 class Harl
-{
+{ 
     private:
     void    debug(void);
     void    info(void);

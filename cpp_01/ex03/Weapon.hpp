@@ -18,4 +18,4 @@ class Weapon
     std::string const &geType();
     void              setType(std::string type);
 };
-#endif
+#endif 

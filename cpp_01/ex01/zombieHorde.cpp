@@ -9,4 +9,4 @@ Zombie *zombieHorde(int N, std::string name)
         newZ[i].announce();
     }
     return (newZ);
-}
+} 

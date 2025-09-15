@@ -6,7 +6,7 @@ Fixed::Fixed(void) : _fixedValue(0){
     std::cout << "Default constructor called\n";
 }
 
-Fixed::Fixed(Fixed const &source){
+Fixed::Fixed(Fixed const &source){ 
     std::cout << "Copy constructor called\n";
     *this = source;
 }

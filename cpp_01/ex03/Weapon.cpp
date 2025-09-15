@@ -10,4 +10,4 @@ std::string const &Weapon::geType(){
 
 void    Weapon::setType(std::string type){
     this->m_type = type;
-}
+} 

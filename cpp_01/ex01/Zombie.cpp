@@ -15,4 +15,4 @@ Zombie::~Zombie(){
 void Zombie::setName(std::string name)
 {
     this->m_name = name;
-}
+} 

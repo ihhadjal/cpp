@@ -14,7 +14,7 @@ class Fixed
 
     public:
 
-    //--------EX01----------//
+    //--------EX01----------// 
     Fixed();
     Fixed(Fixed const &source);
     Fixed(int const intValue);

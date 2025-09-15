@@ -6,4 +6,4 @@ void    HumanA::attack(){
 
 HumanA::HumanA(std::string name, Weapon &weapon) : m_name(name), m_weapon(weapon)
 {
-}
+} 

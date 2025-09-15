@@ -13,4 +13,4 @@ Zombie::Zombie(std::string name) : m_name(name)
 Zombie::~Zombie()
 {
     std::cout << "zombie: " << this->m_name << " is dead\n";
-}
+} 

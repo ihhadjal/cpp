@@ -16,7 +16,7 @@ RESET = \033[0m
 
 all: ${NAME}
 
-${NAME}: ${OBJS}
+${NAME}: ${OBJS} 
 	@echo "${GREEN}Linking ${NAME}...${RESET}"
 	${CXX} ${CXXFLAGS} -o ${NAME} ${OBJS}
 	

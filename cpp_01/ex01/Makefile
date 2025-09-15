@@ -22,7 +22,7 @@ ${NAME}: ${OBJS}
 	
 %.o: %.cpp
 	@echo "${YELLOW}Compiling $<...${RESET}"
-	${CXX} ${CXXFLAGS} -c $< -o $@
+	${CXX} ${CXXFLAGS} -c $< -o $@ 
 
 clean:
 	@echo "${RED}Cleaning object files...${RESET}"
